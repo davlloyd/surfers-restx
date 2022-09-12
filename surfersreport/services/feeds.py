@@ -8,9 +8,11 @@ def getWeather():
     for _feedentry in Feed.get():
         _feeddata = readFeed(_feedentry.url, _feedentry.location)
         if _feeddata is not None:
-            _json.append(_feeddata)
-    return _json
+            for _entry in _feeddata:
+                _json.append(_entry)
 
+    return _json
+ 
 def readFeed(url, location):
     app.logger.info('RSS feed Read for: {}'.format(url))
     _headers = {
@@ -26,16 +28,15 @@ def readFeed(url, location):
     _response = None
     for _entry in _feed.entries:
         app.logger.info("RSS entry keys: {}".format(_entry.keys()))
+        if _response is None:
+            _response = []
         _feedinfo = {
             'title': _entry.title,
             'location': location,
             'published': _entry.published,
             'link': _entry.link
         }
-        if _response is None:
-            _response = _feedinfo
-        else:
-            _response = _response + ',' + _feedinfo
+        _response.append(_feedinfo)
 
     return _response
 
