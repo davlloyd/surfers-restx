@@ -1,3 +1,10 @@
 flask
 flask-restx
 werkzeug==2.1.2
+pyservicebinding
+flask_sqlalchemy
+pymysql
+mysqldbmodel
+pysqlite3
+python-dotenv
+pyservicebinding
