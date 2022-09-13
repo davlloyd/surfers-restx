@@ -7,5 +7,4 @@ pymysql
 mysqldbmodel
 pysqlite3
 python-dotenv
-pyservicebinding
 feedparser
