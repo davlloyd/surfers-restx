@@ -1,6 +1,6 @@
 import feedparser
 from flask import current_app as app
-from surfersreport.data.models import *
+from surfersapi.data.models import *
 
 def getWeather():
     app.logger.info('RSS Weather Request')

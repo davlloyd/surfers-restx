@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask_restx import Namespace, Resource, fields
 from flask import current_app as app
-from surfersreport.services import feeds
+from surfersapi.services import feeds
 
 ns = Namespace("forecast", description="Forecast operations")
 

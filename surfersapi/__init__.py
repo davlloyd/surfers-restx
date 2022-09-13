@@ -1,6 +1,6 @@
 import sys
 from flask import Flask
-from surfersreport import config
+from surfersapi import config
 from flask_restx import Api
 from flask_sqlalchemy import SQLAlchemy
 
@@ -13,7 +13,7 @@ def create_app(config_name):
     db.init_app(app)
     
     app.logger.info('Import blueprints')
-    from surfersreport.apis import blueprint as api
+    from surfersapi.apis import blueprint as api
     app.register_blueprint(api, url_prefix='/api/v1')
 
     return app

@@ -1,7 +1,7 @@
 import json
 import sys
 from unicodedata import category
-from surfersreport import app
+from surfersapi import app
 from . import models
 
 
