@@ -9,12 +9,17 @@ class DataManager():
 
     @staticmethod
     def importData():
-        with open(app.config['DATA_FILE'], 'r') as f:
-            app.logger.info('Importing data')
-            table = json.loads(f.read())
+        app.logger.info('Importing data')
+        try:
+            with open(app.config['DATA_FILE'], 'r') as f:
+                table = json.loads(f.read())
+        except:
+            app.logger.error(f"Error reading data import file: {app.config['DATA_FILE']}")
+        else:
             for _feed in table['feed']:
                 models.Feed(name=_feed['name'],
                             location=_feed['location'],
                             category=_feed['category'],
                             url=_feed['url']).add()
+            app.logger.info(f"Data import completed")
                 
