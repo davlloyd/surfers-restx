@@ -3,7 +3,11 @@ from flask_restx import Namespace, Resource, fields
 from flask import current_app as app
 from surfersapi.services import feeds
 
-ns = Namespace("forecast", description="Forecast operations")
+ns = Namespace("surf", description="Surf conditions")
+
+"""
+Swell return object response layout and example
+"""
 
 swell = ns.model('swell', {
     'height': fields.Integer(required=True, description='The wave height'),
@@ -20,6 +24,11 @@ swell_example = [
     },
 ]
 
+
+"""
+Water return object response layout and example
+"""
+
 water = ns.model('water', {
     'temperature': fields.Integer(required=True, description='The oceans water temperature'),
 })
@@ -27,23 +36,6 @@ water = ns.model('water', {
 
 water_example = [
     {'temperature': 22},
-]
-
-alert = ns.model('alert', {
-    'title': fields.String(required=True, description='Weather alert area'),
-    'location': fields.String(required=True, description='Location of the alert'),
-    'published': fields.String(required=True, description='Weather alert time'),
-    'link': fields.String(required=True, description='Weather alert details location'),
-})
-
-
-alert_example = [
-    {
-        'title': 'Heavy wind alert NSW',
-        'location': 'New South Wales',
-        'published': 'some time details',
-        'link': 'http://somewhere.weather.com'
-    },
 ]
 
 
@@ -76,12 +68,3 @@ class water(Resource):
             ns.abort(404)
 
 
-
-@ns.route('/alert')
-class alert(Resource):
-    @ns.doc('get_alert')
-    @ns.marshal_with(alert)
-    def get(self):
-        _alert = feeds.getWeather()
-        '''Get weather alerts'''
-        return _alert
