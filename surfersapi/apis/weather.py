@@ -2,7 +2,7 @@ from flask import Blueprint
 from flask_restx import Namespace, Resource, fields
 from flask import current_app as app
 from surfersapi.services import feeds
-from surfersapi.services.bom import observations
+from surfersapi.services.bom import locationsearch, observations
 
 ns = Namespace("weather", description="Weather forecast information")
 
@@ -51,15 +51,41 @@ alert_example = [
 ]
 
 
-@ns.route('/observation/<location>')
-@ns.param('location', 'The location identifier')
+"""
+Find location information from BOM. free form location string, postcodes also valid
+"""
+
+location = ns.model('location', {
+    'geohash': fields.String(required=True, description='Locations geohash identifier '),
+    'name': fields.String(required=True, description='Location name'),
+    'postcode': fields.String(required=True, description='locations postal code'),
+    'state': fields.String(required=True, description='State location is within'),
+})
+
+
+location_example = [
+    {
+        'geohash': 'r6586vr',
+        'name': 'Mona Vale',
+        'postcode': '2103',
+        'state': 'NSW'
+    },
+]
+
+
+"""
+APIs
+"""
+
+@ns.route('/observation/<geotag>')
+@ns.param('geotag', 'The location identifier from BOM')
 @ns.response(404, 'Location not found')
 class observation(Resource):
     @ns.doc('get_observation')
     @ns.marshal_with(observation)
-    def get(self, location):
+    def get(self, geotag):
         if location:
-            _observations = observations(location)
+            _observations = observations(geotag)
             '''Get current observed weather from location identifier'''
             return _observations
         else:
@@ -74,3 +100,14 @@ class alert(Resource):
         _alert = feeds.getWeather()
         '''Get weather alerts'''
         return _alert
+
+
+@ns.route('/locations/<searchstring>')
+@ns.param('searchstring', 'The location search string')
+@ns.response(404, 'Location not found')
+class locations(Resource):
+    @ns.doc('get_locations')
+    @ns.marshal_with(location)
+    def get(self, searchstring):
+        _locations = locationsearch(searchstring)
+        return _locations
