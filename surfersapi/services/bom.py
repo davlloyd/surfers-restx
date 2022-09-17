@@ -9,13 +9,15 @@ Location needs to be set by the BOM geohash value
 """
 def observations(geohash):
     _observations = web.get(API_URL.OBSERVATIONS.set_location(geohash))
-    _data = {
-        'temp': _observations['data']['temp'],
-        'wind_speed': _observations['data']['wind']['speed_kilometre'],
-        'wind_direction': _observations['data']['wind']['direction'],
-        'rain_today': _observations['data']['rain_since_9am'],
-        'humidity': _observations['data']['humidity']
-    }
+    _data = {}
+    if _observations['data'] is not None:
+        _data = {
+            'temp': _observations['data']['temp'],
+            'wind_speed': _observations['data']['wind']['speed_kilometre'],
+            'wind_direction': _observations['data']['wind']['direction'],
+            'rain_today': _observations['data']['rain_since_9am'],
+            'humidity': _observations['data']['humidity']
+        }
     return _data
 
 """
@@ -24,8 +26,8 @@ Do a BOM location search, can use full or partial string matchs including name, 
 def locationsearch(location):
     _search = location.replace(" ", "+").replace("_", "+").replace(",", "+")
     _location = web.get(API_URL.LOCATION_SEARCH.set_location(_search))
+    _locations = []
     if len(_location['data']) > 0:
-        _locations = []
         for _entry in _location['data']:
             _data = {
                 'geohash': _entry['geohash'][:6],
@@ -34,9 +36,7 @@ def locationsearch(location):
                 'state': _entry['state']
                 }
             _locations.append(_data)
-        return _locations
-    else:
-        return None
+    return _locations
 
 
 @unique
