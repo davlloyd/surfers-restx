@@ -2,6 +2,7 @@ from flask import Blueprint
 from flask_restx import Resource, Api
 from .weather import ns as weather_ns
 from .surf import ns as surf_ns
+from .general import ns as general_ns
 
 blueprint = Blueprint('api', __name__)
 
@@ -14,3 +15,4 @@ api = Api(
 
 api.add_namespace(weather_ns)
 api.add_namespace(surf_ns)
+api.add_namespace(general_ns, path='/')

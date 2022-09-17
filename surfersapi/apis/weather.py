@@ -111,3 +111,4 @@ class locations(Resource):
     def get(self, searchstring):
         _locations = locationsearch(searchstring)
         return _locations
+
