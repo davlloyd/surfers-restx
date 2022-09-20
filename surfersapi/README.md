@@ -3,7 +3,7 @@
 API Service for the *Surfers Report* web application 
 
 ## To Do
-- Get forecast data from BOM API
+- Get surf conditions from an API provider yet to be identified
 
 
 ## The Website ingredients
