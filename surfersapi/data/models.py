@@ -7,11 +7,8 @@ from datetime import datetime
 from sqlalchemy.dialects.mysql import insert
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.inspection import inspect
-from surfersapi import app, db
-from .utilities import DataManager
 
-app.logger.info('Define DB Models')
-
+db = SQLAlchemy()
 
 class Feed(db.Model):
     __tablename__ = 'feed'
@@ -21,6 +18,13 @@ class Feed(db.Model):
     location = db.Column(db.String(64), unique=False, index=True)
     url = db.Column(db.Text)
 
+    def __init__(self, name: str, category: str, location: str, url: str):
+        self.name = name
+        self.url = url
+        self.location = location
+        self.category = category
+        self.id = self.add()
+
     def __repr__(self):
         return self.id
 
@@ -29,7 +33,7 @@ class Feed(db.Model):
         db.session.add(self)
         try:
             db.session.commit()
-            app.logger.info('Feed Record Added: %s', self.name)
+            current_app.logger.info('Feed Record Added: %s', self.name)
         except IntegrityError:
             db.session.rollback()
 
@@ -46,13 +50,6 @@ class Feed(db.Model):
         result = db.session.query(Feed).all()
         return result
 
-
-app.logger.info('DB URI: %s',app.config['SQLALCHEMY_DATABASE_URI'])
-app.logger.info('Create DB')
-with app.app_context():
-    db.create_all()
-    db.session.commit()
-    DataManager.importData()
 
 
 
