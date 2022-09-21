@@ -7,6 +7,7 @@ metadata:
     app.kubernetes.io/part-of: surferslookout
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/language: python
+    apis.apps.tanzu.vmware.com/register-api: "true"
 spec:
   params:
   - name: clusterBuilder
@@ -21,6 +22,14 @@ spec:
       autoscaling.knative.dev/target: "40"
       autoscaling.knative.dev/metric: "rps"
       autoscaling.knative.dev/target: "60"
+  - name: api_descriptor
+    value:
+      type: openapi # currently support any of openapi, aysncapi, graphql, grpc
+      location:
+        path: "/api/v1"
+      system: "surfers-lookout"
+      owner: team-surfers
+      description: "API Endpoints to provide climate data to the Surfers web front end"
   source:
     git:
       url: https://github.com/davlloyd/surfersapi

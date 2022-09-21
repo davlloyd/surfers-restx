@@ -10,6 +10,7 @@ from sqlalchemy.inspection import inspect
 
 db = SQLAlchemy()
 
+# Feed table which contains the details foor RSS feeds
 class Feed(db.Model):
     __tablename__ = 'feed'
     id = db.Column(db.Integer, primary_key=True)

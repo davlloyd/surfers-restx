@@ -1,0 +1,14 @@
+apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
+kind: APIDescriptor
+metadata:
+  name: surferweb-api-descriptor
+spec:
+  type: openapi
+  description: API Services for the Surfers Lookout app
+  system: test-installation
+  owner: test-installation
+  location:
+    path: "/api/v1/openapi.json"
+    baseURL:
+      url: https://petstore3.swagger.io
+      
