@@ -9,7 +9,7 @@ metadata:
     apps.tanzu.vmware.com/language: python
 spec:
   params:
-  - name: ClusterBuilder
+  - name: clusterBuilder
     value: full
   - name: annotations
     value:

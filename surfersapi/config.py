@@ -7,7 +7,7 @@ basedir = os.getcwd()
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret'
     SESSION_COOKIE_HTTPONLY = False
-    ENV = 'development'
+    ENV = 'unset'
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = os.environ.get('DB_TRACK_MODIFICATIONS') or False
     DATA_FILE = os.environ.get('DATA_FILE') or f"{basedir}/surfersapi/data/data.json"
