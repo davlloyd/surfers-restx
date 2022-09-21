@@ -4,12 +4,12 @@ metadata:
   name: surfersapi
   labels:
     apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: surfersapi
+    app.kubernetes.io/part-of: surferslookout
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/language: python
 spec:
   params:
-  - name: clusterBuilder
+  - name: ClusterBuilder
     value: full
   - name: annotations
     value:
