@@ -1,39 +1,3 @@
-apiVersion: backstage.io/v1alpha1
-kind: Group
-metadata:
-  name: default-team
-  description: Default Team
-spec:
-  type: team
-  profile:
-    displayName: Default Team
-    email: team-a@example.com
-    picture: https://avatars.dicebear.com/api/identicon/team-a@example.com.svg?background=%23fff
-  parent: default-org
-  children: []
-
----
-
-apiVersion: backstage.io/v1alpha1
-kind: User
-metadata:
-  name: default-user
-spec:
-  profile:
-    displayName: Default User
-    email: guest@example.com
-    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
-  memberOf: [default-team]
-
----
-
-apiVersion: backstage.io/v1alpha1
-kind: System
-metadata:
-  name: test
-  description: Tanzu Application Platform GUI System
-spec:
-  owner: default-team
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -51,7 +15,41 @@ metadata:
 spec:
   type: service
   lifecycle: experimental
-  owner: default-team
+  owner: surfer-crew
   system: test
   providesApis:
-    - surfersapi
+    - alpha/surfersapi-tap3.tanzu.rocks
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: surfer-crew
+  description: Team focused on the Surfer system
+spec:
+  type: team
+  profile:
+    displayName: Surfer Crew
+  parent: default-org
+  children: []
+
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: surfer-a
+spec:
+  profile:
+    displayName: Surfer Dude A
+  memberOf: [surfer-crew]
+
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: test
+  description: Tanzu Application Platform GUI System
+spec:
+  owner: default-team

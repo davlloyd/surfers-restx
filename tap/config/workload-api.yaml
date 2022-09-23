@@ -27,7 +27,7 @@ spec:
       type: openapi
       location:
         path: "/api/v1/swagger.json"
-      owner: default-team
+      owner: surfer-crew
       description: "surferslookout-forecast-api"
   source:
     git:
