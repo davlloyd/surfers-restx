@@ -28,6 +28,7 @@ spec:
       location:
         path: "/api/v1/swagger.json"
       owner: surfer-crew
+      system: test
       description: "surferslookout-forecast-api"
   source:
     git:

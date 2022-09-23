@@ -1,14 +1,14 @@
+
+---
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: default-team
-  description: Default Team
+  name: surfer-crew
+  description: Team focused on the Surfer system
 spec:
   type: team
   profile:
-    displayName: Default Team
-    email: team-a@example.com
-    picture: https://avatars.dicebear.com/api/identicon/team-a@example.com.svg?background=%23fff
+    displayName: Surfer Crew
   parent: default-org
   children: []
 
@@ -17,13 +17,11 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
-  name: default-user
+  name: surfer-a
 spec:
   profile:
-    displayName: Default User
-    email: guest@example.com
-    picture: https://avatars.dicebear.com/api/avataaars/guest@example.com.svg?background=%23fff
-  memberOf: [default-team]
+    displayName: Surfer Dude A
+  memberOf: [surfer-crew]
 
 ---
 
