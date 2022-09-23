@@ -26,10 +26,9 @@ spec:
     value:
       type: openapi
       location:
-        path: "/api/v1"
-      system: test
+        path: "/api/v1/swagger.json"
       owner: default-team
-      description: "API Endpoints to provide climate data to the Surfersweb front end"
+      description: "surferslookout-forecast-api"
   source:
     git:
       url: https://github.com/davlloyd/surfersapi
