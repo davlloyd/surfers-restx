@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: surfersreport
+  name: surfersapi
   description: Surf Forecast API Gateway
   tags:
     - app-accelerator

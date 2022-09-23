@@ -3,12 +3,17 @@ kind: APIDescriptor
 metadata:
   name: surferweb-api-descriptor
 spec:
-  type: openapi
-  description: API Services for the Surfers Lookout app
-  system: test-installation
-  owner: test-installation
-  location:
-    path: "/api/v1/openapi.json"
-    baseURL:
-      url: https://petstore3.swagger.io
+  spec:
+    description: "API Endpoints to provide climate data to the Surfers web front end"
+    location:
+      baseURL:
+        ref:
+          apiVersion: serving.knative.dev/v1
+          kind: Service
+          name: surfersapi
+      path: "/api/v1"
+    owner: default-team
+    system: default-system
+    type: openapi
+
       
