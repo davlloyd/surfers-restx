@@ -4,6 +4,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: surfersapi
+  namespace: alpha
   description: Surf Forecast API Gateway
   tags:
     - app-accelerator
@@ -15,7 +16,7 @@ metadata:
 spec:
   type: service
   lifecycle: experimental
-  owner: surfer-crew
-  system: test
+  owner: group:surfers-crew
+  system: surfers-system
   providesApis:
-    - alpha/surfersapi-tap3.tanzu.rocks
+    - alpha/surfersapi-tap1.tanzu.rocks
