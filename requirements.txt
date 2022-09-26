@@ -10,3 +10,4 @@ python-dotenv
 feedparser
 pyservicebinding
 pytest
+pyyaml
