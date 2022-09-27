@@ -1,0 +1,4 @@
+site_name: 'SurfersLookout Backend'
+
+nav:
+  - Home: index.md
