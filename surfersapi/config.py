@@ -11,7 +11,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = os.environ.get('DB_TRACK_MODIFICATIONS') or False
     DATA_FILE = os.environ.get('DATA_FILE') or f"{basedir}/surfersapi/data/data.json"
-    WEB_PORT = os.environ.get('WEB_PORT') or '8080'
+    USER_PORT = os.environ.get('USER_PORT') or '8080'
 
     @staticmethod
     def init_app(app):

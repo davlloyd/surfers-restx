@@ -31,7 +31,7 @@
             "justMyCode": true
         },
         {
-            "name": "PyTest: Flask",
+            "name": "API: PyTest",
             "type": "python",
             "request": "launch",
             "stopOnEntry": false,
